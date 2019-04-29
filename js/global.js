@@ -1,4 +1,4 @@
-const HandcashUrl = "http://api.handcash.io/api/receivingAddress/";
+const HandcashUrl = "https://api.handcash.io/api/receivingAddress/";
 
 async function getHandcashHandle(handleId){
   var handle = document.getElementById(handleId).value
