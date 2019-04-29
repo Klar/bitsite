@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Bitsite</title>
+
+    <link href="css/bitsite.css" rel="stylesheet">
+
+    <script src="js/qrious.min.js"></script>
+    <script src="js/global.js"></script>
+
+  </head>
+  <body>
+      <h1><a href="index.html">Bitsite</a></h1>
+
+      <div class="handcash">
+        <h2 id="handle">Handcash $handle address</h2>
+        <input id="handcashHandle">
+        <input type="button" value="Load" onclick="getHandcashHandle('handcashHandle')">
+      </br>
+        <canvas id="handcashHandleQR"></canvas> </br>
+        <h4 id="handcashHandleAddress"></h4>
+      </div>
+
+  </body>
+</html>

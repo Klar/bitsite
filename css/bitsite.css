@@ -1,0 +1,23 @@
+body{
+  font-family: Sans-Serif;
+  background-color: #38CB7C;
+  margin-left: 25%;
+  margin-right: 25%;
+  text-align: center;
+}
+
+a {
+  color: Black;
+}
+
+.handcash{
+  display: block;
+  background-color: #efefef;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  box-shadow: 0 12px 12px 0 rgba(0,0,0,0.5), 0 12px 24px 0 rgba(0,0,0,0.5);
+}
+
+.handcash canvas{
+  margin-top: 15px;
+}
