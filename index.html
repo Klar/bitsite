@@ -14,12 +14,14 @@
       <h1><a href="index.html">Bitsite</a></h1>
 
       <div class="handcash">
-        <h2 id="handle">Handcash $handle address</h2>
-        <input id="handcashHandle">
-        <input type="button" value="Load" onclick="getHandcashHandle('handcashHandle')">
-      </br>
-        <canvas id="handcashHandleQR"></canvas> </br>
+        <form onsubmit="return false">
+          <h2 id="handle">Handcash $handle address</h2>
+          <input id="handcashHandle" autofocus autocomplete="off">
+          <input type="submit" value="Load" onclick="getHandcashHandle('handcashHandle')">
+        </form>
+        <canvas id="handcashHandleQR"></canvas>
         <h4 id="handcashHandleAddress"></h4>
+        <button id="copyToClipboard" style="display:none;" type="button" name="button" onclick="copyToClipboard()">copy</button>
       </div>
 
   </body>
