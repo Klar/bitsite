@@ -1,7 +1,10 @@
-const HandcashUrl = "http://api.handcash.io/api/receivingAddress/";
+const HandcashUrl = "https://api.handcash.io/api/receivingAddress/";
 
 async function getHandcashHandle(handleId){
   var handle = document.getElementById(handleId).value
+  if (handle.startsWith("$")){
+    handle = handle.substr(1);
+  }
   var url = HandcashUrl + handle;
   const response = await fetch(url, {});
   const handcashHandle = await response.json();
