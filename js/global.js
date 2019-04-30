@@ -1,10 +1,21 @@
 const HandcashUrl = "https://api.handcash.io/api/receivingAddress/";
 
+if (window.location.hash){
+  getHandcashHandle();
+};
+
 async function getHandcashHandle(handleId){
-  var handle = document.getElementById(handleId).value
-  if (handle.startsWith("$")){
+  if (handleId) {
+    var handle = document.getElementById(handleId).value
+    window.location.hash = "#" + handle
+  } else {
+    var handle = window.location.hash;
+  };
+
+  if (handle.startsWith("$") | handle.startsWith("#")){
     handle = handle.substr(1);
   }
+
   var url = HandcashUrl + handle;
   const response = await fetch(url, {});
   const handcashHandle = await response.json();
