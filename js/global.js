@@ -73,7 +73,7 @@ function generateQr(qrValue, elementId) {
 function copyToClipboard() {
   /* Get the text field */
   var copyText = document.getElementById("handcashHandleAddress").innerHTML;
-  console.log(copyText);
+  // console.log(copyText);
 
   // Create new element
   var el = document.createElement('textarea');
