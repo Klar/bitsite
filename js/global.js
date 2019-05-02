@@ -8,7 +8,6 @@ async function getHandcash(handle) {
 
   if (handle) {
     var handle = handle;
-    console.log(handle);
   } else if (document.getElementById("handcashHandle") != null) {
     var handle = document.getElementById("handcashHandle").value
   } else {
