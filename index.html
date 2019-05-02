@@ -17,11 +17,12 @@
         <form onsubmit="return false">
           <h2 id="handle">Handcash $handle address</h2>
           <input id="handcashHandle" autofocus autocomplete="off">
-          <input type="submit" value="Load" onclick="getHandcashHandle('handcashHandle')">
+          <input type="submit" value="Load" onclick="setHandcashHandle()">
         </form>
         <canvas id="handcashHandleQR"></canvas>
         <h4 id="handcashHandleAddress"></h4>
         <button id="copyToClipboard" style="display:none;" type="button" name="button" onclick="copyToClipboard()">copy</button>
+        <h5>Support me: <a href="javascript:setHandcashHandle('laka');">$laka</a></h5>
       </div>
 
   </body>

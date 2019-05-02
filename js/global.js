@@ -1,13 +1,16 @@
 const HandcashUrl = "https://api.handcash.io/api/receivingAddress/";
 
 if (window.location.hash){
-  getHandcashHandle();
+  setHandcashHandle();
 };
 
-async function getHandcashHandle(handleId){
-  if (handleId) {
-    var handle = document.getElementById(handleId).value
-    window.location.hash = "#" + handle
+async function getHandcash(handle) {
+
+  if (handle) {
+    var handle = handle;
+    console.log(handle);
+  } else if (document.getElementById("handcashHandle") != null) {
+    var handle = document.getElementById("handcashHandle").value
   } else {
     var handle = window.location.hash;
   };
@@ -16,16 +19,45 @@ async function getHandcashHandle(handleId){
     handle = handle.substr(1);
   }
 
+  window.location.hash = "#" + handle
+
   var url = HandcashUrl + handle;
-  const response = await fetch(url, {});
-  const handcashHandle = await response.json();
-  // console.log(handcashHandle.receivingAddress);
-  document.getElementById("handle").innerHTML = "$" + handle;
-  document.getElementById("handcashHandleAddress").innerHTML = handcashHandle.receivingAddress;
 
-  document.getElementById("copyToClipboard").style.display = "inline";
+  async function async_fetch(url) {
+    let response = await fetch(url)
+    if (response.ok) return await response.json()
+    throw (response.status)
+  }
 
-  generateQr(handcashHandle.receivingAddress, "handcashHandleQR")
+  try {
+    var handcash = await async_fetch(url);
+  } catch (e) {
+    var handcash = "";
+  };
+
+  // add handle to json
+  handcash["handle"] = handle;
+
+  return handcash;
+};
+
+
+async function setHandcashHandle(handle){
+
+  var handcash = await getHandcash(handle);
+
+  if (handcash) {
+    document.getElementById("handle").innerHTML = "$" + handcash.handle;
+    document.getElementById("handcashHandleAddress").innerHTML = handcash.receivingAddress;
+    document.getElementById("copyToClipboard").style.display = "inline";
+    document.getElementById("handcashHandleQR").style.display = "inline";
+    generateQr(handcash.receivingAddress, "handcashHandleQR")
+  } else {
+    document.getElementById("handle").innerHTML = "";
+    document.getElementById("handcashHandleAddress").innerHTML = "";
+    document.getElementById("copyToClipboard").style.display = "none";
+    document.getElementById("handcashHandleQR").style.display = "none";
+  };
 };
 
 function generateQr(qrValue, elementId) {
