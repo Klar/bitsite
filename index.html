@@ -8,23 +8,19 @@
 
     <script src="js/qrious.min.js"></script>
     <script src="js/global.js"></script>
-
   </head>
   <body>
       <h1><a href="index.html">Bitsite</a></h1>
-
       <div class="handcash">
-        <h2> There was a change in Handcash API // Paymail - Migration - This might be using the old API!</h2>
         <form onsubmit="return false">
-          <h2 id="handle">Handcash $handle address</h2>
-          <input id="handcashHandle" autofocus autocomplete="off">
-          <input type="submit" value="Load" onclick="setHandcashHandle()">
+          <h2>Paymail</h2>
+          <input id="paymailHandle" autofocus autocomplete="off">
+          <input type="submit" value="Load" onclick="getPaymailPubkey()">
         </form>
-        <canvas id="handcashHandleQR"></canvas>
-        <h4 id="handcashHandleAddress"></h4>
+        <canvas id="paymailHandleQR"></canvas>
+        <h4 id="paymailHandleAddress"></h4>
         <button id="copyToClipboard" style="display:none;" type="button" name="button" onclick="copyToClipboard()">copy</button>
-        <h5>Support me: <a href="javascript:setHandcashHandle('laka');">$laka</a></h5>
+        <h5>Support me: <a href="javascript:getPaymailPubkey('arvet@localchain.net');">arvet@localchain.net</a></h5>
       </div>
-
   </body>
 </html>

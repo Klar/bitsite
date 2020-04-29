@@ -1,11 +1,41 @@
-const HandcashUrl = "https://api.handcash.io/api/receivingAddress/";
-
 if (window.location.hash){
-  setHandcashHandle();
+  getPaymailPubkey();
 };
 
-async function getHandcash(handle) {
+// const somePaymailAddress = 'arvet@localchain.net'
 
+async function async_fetch(url) {
+  let response = await fetch(url)
+  if (response.ok) return await response.text();
+  throw (response.status)
+}
+
+async function getPaymailPubkey() {
+  try {
+    if (paymailHandle) {
+      var paymailHandle = paymailHandle;
+    } else if (document.getElementById("paymailHandle") != null) {
+      var paymailHandle = document.getElementById("paymailHandle").value
+    } else {
+      var paymailHandle = window.location.hash;
+      if (paymailHandle.startsWith("#")){
+        paymailHandle = paymailHandle.substr(1);
+      }
+    };
+
+    url = "http://localhost:8443/pubkey/" + paymailHandle
+    var paymailPubkey = await async_fetch(url);
+    console.log(paymailPubkey)
+    window.location.hash = "#" + paymailHandle
+  } catch (e) {
+    console.log(e)
+    var paymailPubkey = "";
+  }
+
+  return paymailPubkey
+}
+
+async function getHandcash(handle) {
   if (handle) {
     var handle = handle;
   } else if (document.getElementById("handcashHandle") != null) {
@@ -22,12 +52,6 @@ async function getHandcash(handle) {
 
   var url = HandcashUrl + handle;
 
-  async function async_fetch(url) {
-    let response = await fetch(url)
-    if (response.ok) return await response.json()
-    throw (response.status)
-  }
-
   try {
     var handcash = await async_fetch(url);
   } catch (e) {
@@ -40,9 +64,7 @@ async function getHandcash(handle) {
   return handcash;
 };
 
-
-async function setHandcashHandle(handle){
-
+async function setPaymailHandle(handle){
   var handcash = await getHandcash(handle);
 
   if (handcash) {
@@ -68,7 +90,6 @@ function generateQr(qrValue, elementId) {
     value: qrValue
   });
 };
-
 
 function copyToClipboard() {
   /* Get the text field */
